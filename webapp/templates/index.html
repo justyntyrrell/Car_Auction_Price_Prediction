@@ -1,0 +1,139 @@
+<html>
+<body>
+    <h3>Car Auction Sale Price Prediction Form</h3>
+
+<div>
+  <form action="/result" method="POST">
+    <label for="Year">Year</label>
+    <input type="number" id="Year" name="Year">
+    <br>
+    <label for="Make">Make</label>
+    <select id="Make" name="Make">
+     <option id='Acura'>Acura</option>
+     <option id='AlfaRomeo'>AlfaRomeo</option>
+     <option id='AMGeneral'>AMGeneral</option>
+     <option id='AstonMartin'>AstonMartin</option>
+     <option id='Audi'>Audi</option>
+     <option id='Austin'>Austin</option>
+     <option id='Autech'>Autech</option>
+     <option id='Autozam'>Autozam</option>
+     <option id='Bentley'>Bentley</option>
+     <option id='BMW'>BMW</option>
+     <option id='Buick'>Buick</option>
+     <option id='Cadillac'>Cadillac</option>
+     <option id='Chevrolet'>Chevrolet</option>
+     <option id='Chrysler'>Chrysler</option>
+     <option id='Datsun'>Datsun</option>
+     <option id='Dodge'>Dodge</option>
+     <option id='Exomotive'>Exomotive</option>
+     <option id='Ferrari'>Ferrari</option>
+     <option id='Fiat'>Fiat</option>
+     <option id='Ford'>Ford</option>
+     <option id='GMC'>GMC</option>
+     <option id='Honda'>Honda</option>
+     <option id='Hummer'>Hummer</option>
+     <option id='Hyundai'>Hyundai</option>
+     <option id='Infiniti'>Infiniti</option>
+     <option id='Isuzu'>Isuzu</option>
+     <option id='Jaguar'>Jaguar</option>
+     <option id='Jeep'>Jeep</option>
+     <option id='Kia'>Kia</option>
+     <option id='Laforza'>Laforza</option>
+     <option id='Lancia'>Lancia</option>
+     <option id='LandRover'>LandRover</option>
+     <option id='Lexus'>Lexus</option>
+     <option id='Lincoln'>Lincoln</option>
+     <option id='Lotus'>Lotus</option>
+     <option id='Maserati'>Maserati</option>
+     <option id='Mazda'>Mazda</option>
+     <option id='McLaren'>McLaren</option>
+     <option id='Mercedes-Benz'>Mercedes-Benz</option>
+     <option id='Mercury'>Mercury</option>
+     <option id='Merkur'>Merkur</option>
+     <option id='MINI'>MINI</option>
+     <option id='Mitsubishi'>Mitsubishi</option>
+     <option id='Nissan'>Nissan</option>
+     <option id='Peugeot'>Peugeot</option>
+     <option id='Polaris'>Polaris</option>
+     <option id='Pontiac'>Pontiac</option>
+     <option id='Porsche'>Porsche</option>
+     <option id='Qvale'>Qvale</option>
+     <option id='Rolls-Royce'>Rolls-Royce</option>
+     <option id='Rover'>Rover</option>
+     <option id='Saab'>Saab</option>
+     <option id='Scion'>Scion</option>
+     <option id='Shelby'>Shelby</option>
+     <option id='Subaru'>Subaru</option>
+     <option id='Suzuki'>Suzuki</option>
+     <option id='Tesla'>Tesla</option>
+     <option id='Toyota'>Toyota</option>
+     <option id='Volkswagen'>Volkswagen</option>
+     <option id='Volvo'>Volvo</option>
+     <option id='Winnebago'>Winnebago</option>
+     <option id='Yugo'>Yugo</option>
+    </select>
+    <br>
+    <label for="Mileage">Mileage (miles)</label>
+    <input type="number" id="Mileage" name="Mileage">
+    <br>
+    <label for="Bodystyle">BodyStyle</label>
+    <select id="Bodystyle" name="BodyStyle">
+      <option value="Convertible">Convertible</option>
+      <option value="Coupe">Coupe</option>
+      <option value="Sedan">Sedan</option>
+      <option value="Wagon">Wagon</option>
+      <option value="Hatchback">Hatchback</option>
+      <option value="SUV/Crossover">SUV/Crossover</option>
+      <option value="Van/Minivan">Van/Minivan</option>
+      <option value="Truck">Truck</option>
+    </select>
+    <br>
+    <label for="Drivetrain">Drivetrain</label>
+    <select id="Drivetrain" name="Drivetrain">
+      <option id='4WD/AWD'>4WD/AWD</option>
+      <option id='Front-wheel drive'>Front-wheel drive</option>
+      <option id='Rear-wheel drive'>Rear-wheel drive</option>
+    </select>
+    <br>
+    <label for="Transmission">Transmission</label>
+    <select id="Transmission" name="Transmission">
+     <option value="automatic">Automatic (electric)</option>
+     <option value="automatic (cvt)">Automatic (cvt)</option>     
+     <option value="automatic (3-speed)">Automatic (3-speed)</option>
+     <option value="automatic (4-speed)">Automatic (4-speed)</option>
+     <option value="automatic (5-speed)">Automatic (5-speed)</option>
+     <option value="automatic (6-speed)">Automatic (6-speed)</option>
+     <option value="automatic (7-speed)">Automatic (7-speed)</option>
+     <option value="automatic (8-speed)">Automatic (8-speed)</option>
+     <option value="automatic (9-speed)">Automatic (7-speed)</option>
+     <option value="automatic (10-speed)">Automatic (10-speed)</option>
+     <option value="manual (4-speed)">Manual (4-speed)</option>
+     <option value="manual (5-speed)">Manual (5-speed)</option>
+     <option value="manual (6-speed)">Manual (6-speed)</option>
+     <option value="manual (7-speed)">Manual (7-speed)</option>
+    </select>    
+    <br>
+    <label for="SellerType">SellerType</label>
+    <select id="SellerType" name="SellerType">
+      <option value="private party">Private Party</option>
+      <option value="dealer">Dealer</option>
+    </select>
+    <br>
+    <label for="Reserve">Reserve</label>
+    <select id="Reserve" name = "Reserve">
+     <option value="Has reserve">Has Reserve</option>
+     <option value="No reserve">No Reserve</option>
+    </select>
+    <br>
+    <label for="Horsepower">Horsepower</label>
+    <input type="number" id="Horsepower" name="Horsepower">
+    <br>
+    <label for="Torque">Torque (lb-ft)</label>
+    <input type="number" id="Torque" name="Torque">
+    <br>
+    <input type="submit" value="Submit">
+    <h1> USD ${{ prediction }}</h1>
+  </form>
+</div>
+</body>
+</html>
