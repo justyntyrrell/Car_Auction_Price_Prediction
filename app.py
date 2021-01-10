@@ -6,7 +6,6 @@ Created on Sat Jan  2 11:33:54 2021
 """
 
 import pandas as pd
-import flask
 import pickle
 from flask import Flask, render_template, request
 
@@ -15,11 +14,10 @@ app=Flask(__name__)
 @app.route('/')
 @app.route('/index')
 def index():
-    return flask.render_template('index.html')
+    return render_template('index.html')
 
 
 def ValuePredictor(to_predict_list):
-    #to_predict = np.array(to_predict_list).reshape(1,10)
     loaded_model = pickle.load(open("finalized_model.pkl","rb"))
     loaded_OHE = pickle.load(open("OH_encoder.pkl","rb"))
     
@@ -39,7 +37,6 @@ def result():
     if request.method == 'POST':
         to_predict_list = request.form.to_dict()
         print(to_predict_list)
-        #to_predict_list=list(to_predict_list.values())
         result = ValuePredictor(to_predict_list)
         return render_template("index.html",prediction=result)
     
