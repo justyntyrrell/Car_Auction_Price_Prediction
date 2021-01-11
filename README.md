@@ -1,3 +1,5 @@
+demo/banner.png
+
 # Car Auction Price Prediction
 
 ### Project Overview 
