@@ -1,4 +1,4 @@
-demo/banner.png
+![IMG](demo/banner.png)
 
 # Car Auction Price Prediction
 
