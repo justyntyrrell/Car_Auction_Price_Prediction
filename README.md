@@ -1,11 +1,11 @@
 # Car Auction Price Prediction
 
-Project Overview 
+### Project Overview 
 
-Goal: Create a tool to predict the auction selling price for cars selling on https://carsandbids.com/
+**Goal**: Create a tool to predict the auction selling price for cars selling on https://carsandbids.com/
 Practice end-to-end ML development. From data collection to ML model web application: https://car-auction-price.herokuapp.com/
 
-Potential use cases: 
+**Potential use cases:**
 * Attract a potential seller by providing an estimate on how much their car could sell for on cars and bids
 * Help determine a reserve price
 * Help inform a buyer on a how high to bid on a car
@@ -22,16 +22,16 @@ Results and Takeaways:
 including prodiction numbers could help the model predict these cars but the easiest way would be to train it on more cars including these appreciated cars.
 * There 
 
-Data Collection 
+## Data Collection 
 
 A webscraper was built using selenium and beatiful soup. Files can be found in main.py, scraper.py and the raw data stored in a csv file called car_auction_data. Features collected was vehicle Year,	Make,	Model,	Seller,	Location,	VIN,	Mileage,	BodyStyle,	Engine,	Drivetrain,	Transmission,	ExteriorColor,	InteriorColor,	TitleStatus,	SellerType,	Price,	Reserve,	Horsepower,	Torque.
 
 
-Data cleaning
-Data exploration 
-Model training and hyper parameter tuning
-Finalizing model 
-Model web deployment
+## Data cleaning
+## Data exploration 
+## Model training and hyper parameter tuning
+## Finalizing model 
+## Model web deployment
 
 
 After testing a random forest regressor, Lasso regression, ridge regression, and XG boost resgressor, the  
