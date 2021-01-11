@@ -9,6 +9,15 @@ Web application: https://car-auction-price.herokuapp.com/
 * Create a tool to predict the auction selling price for cars selling on https://carsandbids.com/
 * Practice end-to-end ML development. From data collection to ML model deployment.
 
+!<IMG>(demo/actionvid.webm)
+
+<figure class="video_container">
+  <video controls="true" allowfullscreen="true" poster="path/to/poster_image.png">
+    <source src="demo/actionvid.webm" type="video/webm">
+  </video>
+</figure>
+
+
 **Use Cases:**
 * Attract a potential seller by providing an estimate on how much their car could sell for on cars and bids
 * Help determine a reserve price
