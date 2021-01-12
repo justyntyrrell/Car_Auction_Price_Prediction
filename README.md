@@ -36,16 +36,32 @@ including prodiction numbers could help the model predict these cars but the eas
 * There 
 
 ## Data Collection 
+selenium, beatifulSoup
 
-A webscraper was built using selenium and beatiful soup. Files can be found in main.py, scraper.py and the raw data stored in a csv file called car_auction_data. Features collected was vehicle Year,	Make,	Model,	Seller,	Location,	VIN,	Mileage,	BodyStyle,	Engine,	Drivetrain,	Transmission,	ExteriorColor,	InteriorColor,	TitleStatus,	SellerType,	Price,	Reserve,	Horsepower,	Torque.
+A webscraper was built using selenium and beatiful soup. Files can be found in main.py, scraper.py and the raw data stored in a csv file  car_auction_data. Features collected were vehicle Year,	Make,	Model,	Seller,	Location,	VIN,	Mileage,	BodyStyle,	Engine,	Drivetrain,	Transmission,	ExteriorColor,	InteriorColor,	TitleStatus,	SellerType,	Price,	Reserve,	Horsepower,	Torque.
 
 
 ## Data Cleaning
-## Data Exploration 
-## Model Training and Hyperparameter tuning
-After testing a random forest regressor, Lasso regression, ridge regression, and XG boost resgressor, the  
-## Model Explainability
-## Model Web Deployment
 
+Data loaded was loaded as a panda dataframe in jupyter notenook. Various characters were removed and numerical data was converted to integers. 
+Some categorical data was simplified due to different inconsistent data entry. 
+
+## Data Exploration 
+seaborn, matplotlib
+Various scatter plots, boxplots, and correlation matrix 
+
+## Model Training and Hyperparameter tuning
+Models tested: Random forest regressor, Lasso regression, ridge regression, and XG boost resgressor
+Hyperparameter tuning with bayesion optimization
+Data split into test and train sets. 
+One hot encoding used on categorical data. Target encoding tested but OHE provided better results.
+Cross validation and MAE was used to check performance. A learning curve plotting training size Vs MAE to check over and under fitting.
+
+## Model Explainability
+
+
+## Model Web Deployment
+Model trained agaisnt enitire dataset due to its ilmited size. The model was then serialized using pickle. 
+Web app was made using flask.  
 
 
