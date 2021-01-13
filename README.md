@@ -47,22 +47,28 @@ Libraries used: pandas, numpy, fuzzywuzzy
 Libraries used: seaborn, matplotlib
 * Various scatter plots, boxplots, and correlation matrix
 * scatter plots showed some larger then possible values (HP > 2000) and these were corrected 
-*
-![IMG](corrmat.png)
-![IMG](scatterplot.png)
+* Horsepower followed by torque has the best correlation to price
+![IMG](demo/corrmat.PNG)
+![IMG](demo/scatterplots.png)
+![IMG](demo/makeboxplot.png)
 
-## Model Training and Hyperparameter tuning
-Models tested: Random forest regressor, Lasso regression, ridge regression, and XG boost resgressor
-Hyperparameter tuning with bayesion optimization
-Data split into test and train sets. 
-One hot encoding used on categorical data. Target encoding tested but OHE provided better results.
-Cross validation and MAE was used to check performance. A learning curve plotting training size Vs MAE to check over and under fitting.
-
+## Model Preprocessing, Training, and Hyperparameter tuning
+Libraries used: sklearn, skopt, xgboost
+Models tested: Random forest regressor, Lasso regression, ridge regression, XG boost regressor
+* One hot encoder used to encode catagorical data. (catagorical data is not ordinal. Car makes could be label encoded however. Ex. ferrari, mclaren labeled as 10, honda, ford labeled as 1)
+* Target encoding tested but OHE provided better results.
+* Data split into test and train sets, 10-90
+* Model trained, 5-fold cross validation and MAE used to test performance. (CV used due to small dataset)
+* learning curves plotted to check over and underfitting 
+* Hyperparameter tuning with bayesion optimization
 ## Model Explainability
-
+Libraries used: eli5, shap, graphviz
 
 ## Model Web Deployment
-Model trained agaisnt enitire dataset due to its ilmited size. The model was then serialized using pickle. 
-Web app was made using flask.  
+tech stack: pickle, flask, Heroku
+
+Model trained agaisnt entire dataset due to its limited size. The model was then serialized using pickle. 
+Web app was made using flask and deployed by linking github with Heroku. 
+
 
 
