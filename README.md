@@ -56,10 +56,18 @@ Libraries used: seaborn, matplotlib
 * Various scatter plots, boxplots, and correlation matrix
 * Scatter plots showed some larger than possible values (HP > 2000) and these were corrected 
 * Horsepower followed by torque has the best correlation to price
-![IMG](demo/corrmat.PNG)
-![IMG](demo/scatterplots.png)
-![IMG](demo/makeboxplot.png)
 
+| ![IMG](demo/corrmat.PNG) |
+|:--:| 
+| *correlation matrix* |
+
+| ![IMG](demo/scatterplots.png) |
+|:--:| 
+| *Scatterplot* |
+
+| ![IMG](demo/makeboxplot.png) |
+|:--:| 
+| *Box plot of car price vs. Make* |
 ## Model Preprocessing, Training, and Hyperparameter tuning
 Libraries used: sklearn, skopt, xgboost
 
