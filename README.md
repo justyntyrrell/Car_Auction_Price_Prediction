@@ -24,7 +24,7 @@ I wanted to use cars and bids because they include the horsepower, torque, and t
 * Web Scraper: [main.py](/main.py), [scraper.py](/scraper.py)
 * Collected Raw Data: [car_auction_data.csv](/car_auction_data.csv)
 * Model building: [car_auction.ipynb](/car_auction.ipynb)
-* Flask web app: [app.py](/app.py), [index.html](/templates/index.html), [Procfile](//Procfile), [requirements.txt](/requirements.txt)
+* Flask web app: [app.py](/app.py), [index.html](/templates/index.html), [Procfile](//Procfile), [requirements.txt](/requirements.txt), [OH_encoder.pkl](/OH_encoder.pkl), [Finalized_model.pkl](/Finalized_model.pkl)
 
 
 **Results and Takeaways:** 
@@ -59,7 +59,7 @@ Libraries used: seaborn, matplotlib
 
 | ![IMG](demo/corrmat.PNG) |
 |:--:| 
-| Correlation matrix* |
+| *Correlation matrix* |
 
 | ![IMG](demo/scatterplots.png) |
 |:--:| 
@@ -68,6 +68,7 @@ Libraries used: seaborn, matplotlib
 | ![IMG](demo/makeboxplot.png) |
 |:--:| 
 | *Box plot of car price vs. Make* |
+
 ## Model Preprocessing, Training, and Hyperparameter tuning
 Libraries used: sklearn, skopt, xgboost
 
@@ -83,11 +84,12 @@ Models tested: Random forest regressor, XGboost regressor, Lasso regression, Rid
 * learning curves plotted to check over and underfitting 
 * Hyperparameter tuning with gridsearch and Bayesian optimization
 
-## Model Explain ability
+## Model Explainability
 Libraries used: eli5, shap, graphviz
 
 * Permutation Importance to calculate feature importance. 
 * This works by randomly shuffling a feature column in the dataset and making predictions using the resulting dataset. If the model relied on that feature heavily to make accurate predictions then the results will be very off. For example, horsepower is shuffled so a random horsepower stat is assigned to a car. If horsepower is a good predictor of the value of a car, then the prediction using the shuffled dataset will be wildly off.  
+
 | ![IMG](demo/permutationimportance.png) |
 |:--:| 
 | *Permutation Importance* |
