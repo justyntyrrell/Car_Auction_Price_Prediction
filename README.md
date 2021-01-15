@@ -55,11 +55,11 @@ Libraries used: pandas, numpy, fuzzywuzzy
 Libraries used: seaborn, matplotlib
 * Various scatter plots, boxplots, and correlation matrix
 * Scatter plots showed some larger than possible values (HP > 2000) and these were corrected 
-* Horsepower followed by torque has the best correlation to price
+* Horsepower followed by torque has the largest correlation to price
 
 | ![IMG](demo/corrmat.PNG) |
 |:--:| 
-| *correlation matrix* |
+| Correlation matrix* |
 
 | ![IMG](demo/scatterplots.png) |
 |:--:| 
@@ -71,19 +71,54 @@ Libraries used: seaborn, matplotlib
 ## Model Preprocessing, Training, and Hyperparameter tuning
 Libraries used: sklearn, skopt, xgboost
 
-Models tested: Random forest regressor, Lasso regression, ridge regression, XG boost regressor
-* One hot encoder used to encode categorical data. (categorical data is not ordinal. Car makes could be label encoded however. Ex. Ferrari, McLaren labeled as 10, Honda, Ford labeled as 1)
+Models tested: Random forest regressor, XGboost regressor, Lasso regression, Ridge regression,
+*RFR and XGBoost are descision tree based models. 
+*Lasso and Ridge both use regularized linear regression, the difference being how they are regularized. Ridge adds a penalty term which is equal to the square of the coefficient. Lasso adds a penalty term to the cost function. This term is the absolute sum of the coefficients.
+
+* A one hot encoder is used to encode categorical data. (categorical data here is not ordinal. 
+* Car makes could be label encoded however. Ex. Ferrari and McLaren labeled as 10, Honda and Ford labeled as 1
 * Target encoding tested but OHE provided better results.
 * Data split into test and train sets, 10-90
-* Model trained, 5-fold cross validation and MAE used to test performance. (CV used due to small dataset)
+* Model trained, 5-fold cross validation and MAE used to test performance. (CV used due to small dataset is less suceptible to outliers however introduces some data leakage)
 * learning curves plotted to check over and underfitting 
-* Hyperparameter tuning with Bayesian optimization
+* Hyperparameter tuning with gridsearch and Bayesian optimization
 
 ## Model Explain ability
 Libraries used: eli5, shap, graphviz
 
+* Permutation Importance to calculate feature importance. 
+* This works by randomly shuffling a feature column in the dataset and making predictions using the resulting dataset. If the model relied on that feature heavily to make accurate predictions then the results will be very off. For example, horsepower is shuffled so a random horsepower stat is assigned to a car. If horsepower is a good predictor of the value of a car, then the prediction using the shuffled dataset will be wildly off.  
+| ![IMG](demo/permutationimportance.png) |
+|:--:| 
+| *Permutation Importance* |
+
+* Feature importance shows what variables most affect predictions, partial dependence plots show how a feature affects predictions.
+*  This is done by repeatedly altering the value for one variable and tracing how this impacts the outcome.
+* For example, horsepower is increased from 0 to 800 and the predicted price is graphed. This is done for multiple cars and averaged. 
+
+| ![IMG](demo/pdp.png) |
+|:--:| 
+| *Partial Dependence Plot* |
+
+* SHAP values interpret the impact of having a certain value for a given feature in comparison to the prediction we'd make if that feature took some baseline value.
+
+| ![IMG](demo/SHAP.png) |
+|:--:| 
+| *SHapley Additive exPlanations* |
+
+* SHAP summary plots show feature importance using permutaion importance but also show what is driving it. 
+* Each dot has three characteristics:
+  * Vertical location shows what feature it is depicting
+  * Color shows whether that feature was high or low for that row of the dataset
+  * Horizontal location shows whether the effect of that value caused a higher or lower prediction.
+
+| ![IMG](demo/SHAPsummaryplot.png) |
+|:--:| 
+| *SHAP Summary Plot* |
+
+
 ## Model Web Deployment
-tech stack: pickle, flask, Heroku
+Tech stack: pickle, flask, Heroku
 
 Model trained against entire dataset due to its limited size. The model was then serialized using pickle. 
 Web app was made using flask and deployed by linking GitHub with Heroku. 
