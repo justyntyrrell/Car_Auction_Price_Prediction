@@ -1,13 +1,5 @@
 ![IMG](webdemo/banner.png)
-Web application: [Try it out!](https://car-auction-price.herokuapp.com/)
-
-##### Table of Contents  
-[Data Collection](https://justyntyrrell.github.io/Car_Auction_Price_Prediction/#data-collection)  
-[Emphasis](#emphasis)  
-...snip...    
-<a name="headers"/>
-## Headers
-
+Web Application: [Try it out!](https://car-auction-price.herokuapp.com/)
 
 # Car Auction Price Prediction
 
