@@ -1,5 +1,7 @@
 theme: jekyll-theme-minimal
 title: [A Data Science Project]
-description: [From data collection to web deployment]
+description: [From data collection to web deployment 
+##### Table of Contents  
+[Data Collection](https://github.com/justyntyrrell/Car_Auction_Price_Prediction/blob/gh-pages/index.md#data-collection)]
 
 #logo: [Location of the logo]
