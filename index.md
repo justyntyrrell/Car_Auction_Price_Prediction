@@ -2,7 +2,7 @@
 Web application: [Try it out!](https://car-auction-price.herokuapp.com/)
 
 ##### Table of Contents  
-[Data Collection](https://github.com/justyntyrrell/Car_Auction_Price_Prediction/blob/gh-pages/index.md#data-collection)  
+[Data Collection]https://justyntyrrell.github.io/Car_Auction_Price_Prediction/#data-collection)  
 [Emphasis](#emphasis)  
 ...snip...    
 <a name="headers"/>
