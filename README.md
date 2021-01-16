@@ -6,7 +6,7 @@ Web application: https://car-auction-price.herokuapp.com/
 ## Project Overview 
 
 **Goal:**
-* Create a tool to predict the auction selling price for cars selling on https://carsandbids.com/
+* Create a tool to predict the auction selling price for cars selling on [carsandbids.com](https://carsandbids.com/)
 * Practice end-to-end machine learning (ML) development. From data collection to model deployment.
 
 ![IMG](demo/example1.gif)
@@ -34,7 +34,7 @@ I wanted to use cars and bids because they include the horsepower, torque, and t
 * The model performed the best by overfitting the data. Looking at the learning curve, the model would benefit from more training examples.
 * Horsepower was the best indictor of selling price.
 * The model understandably does well on cars where the features accurately portray the cars worth.
-* The model does very poorly on cars that have appreciated in value unless the model has been trained on that car. A good example is the BMW Z8 which the model predicts would sell for around $20 000 but sells for upwards of $180 000 https://carsandbids.com/auctions/92onPXLA/2002-bmw-z8. The BMW Z8 has appreciated greatly in value partly due to it being regarded as a good-looking car but also because of its limited production numbers. 
+* The model does very poorly on cars that have appreciated in value unless the model has been trained on that car. A good example is the BMW Z8 which the model predicts would sell for around $20 000 but sells for upwards of [$180 000](https://carsandbids.com/auctions/92onPXLA/2002-bmw-z8). The BMW Z8 has appreciated greatly in value partly due to it being regarded as a good-looking car but also because of its limited production numbers. 
 * Including production numbers could help the model predict these cars but the easiest way would be to train it on more cars including examples of appreciated cars.
 * Many of cars on carsandbids.com are in very good condition so the model likely has a bias towards mint condition cars. There is no feature that encapsulates condition apart from mileage. 
 
