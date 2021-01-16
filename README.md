@@ -30,20 +30,20 @@ I wanted to use cars and bids because they include the horsepower, torque, and t
 **Results and Takeaways:** 
 * An XGBoost regressor model performed the best with a mean absolute error (MAE) of around $6900
 * This means on average the model was $6900 off the correct price of a car.
-* To contextualize this, the average sale price of a car was $20 085 with a std of $21 700
+* To contextualize this, the average sale price of a car was $20 085 with a std of $21, 700
 * The model performed the best by overfitting the data. Looking at the learning curve, the model would benefit from more training examples.
 * Horsepower was the best indictor of selling price.
 * The model understandably does well on cars where the features accurately portray the cars worth.
-* The model does very poorly on cars that have appreciated in value unless the model has been trained on that particular car. A good example is the BMW Z8 which the model predicts would sell for around $20 000 but in actuality sells for upwards of $180 000 https://carsandbids.com/auctions/92onPXLA/2002-bmw-z8. The BMW Z8 has appreciated greatly in value partly due to it being regarded as a good looking car but also because of its limited production numbers. 
+* The model does very poorly on cars that have appreciated in value unless the model has been trained on that car. A good example is the BMW Z8 which the model predicts would sell for around $20 000 but sells for upwards of $180 000 https://carsandbids.com/auctions/92onPXLA/2002-bmw-z8. The BMW Z8 has appreciated greatly in value partly due to it being regarded as a good-looking car but also because of its limited production numbers. 
 * Including production numbers could help the model predict these cars but the easiest way would be to train it on more cars including examples of appreciated cars.
-* Many of cars on carsandbids.com are in very good condition so the model likely has a bias towards mint condition cars. There's no feature that encaptulates condition apart from mileage. 
+* Many of cars on carsandbids.com are in very good condition so the model likely has a bias towards mint condition cars. There is no feature that encapsulates condition apart from mileage. 
 
 ## Data Collection 
-Libraries used: selenium, beatifulSoup
+Libraries used: selenium, beautifulSoup
 
 * A web scraper was built using selenium and beautifulsoup. 
-* Selenium is a popular broser automation tool and beatifulsoup is a Python library for pulling data out of HTML and XML files
-* Features collected were vehicle: Year, Make, Model,	Seller,	Location,	VIN, Mileage, BodyStyle, Engine, Drivetrain, Transmission, ExteriorColor, InteriorColor,	TitleStatus, SellerType, Price,	Reserve, Horsepower, Torque.
+* Selenium is a popular browser automation tool and beautifulsoup is a Python library for pulling data out of HTML and XML files
+* Features collected were vehicle: Year, Make, Model, Seller, Location, VIN, Mileage, BodyStyle, Engine, Drivetrain, Transmission, ExteriorColor, InteriorColor, TitleStatus, SellerType, Price, Reserve, Horsepower, Torque.
 
 ## Data Cleaning
 Libraries used: pandas, numpy, fuzzywuzzy
@@ -54,7 +54,7 @@ Libraries used: pandas, numpy, fuzzywuzzy
 * Some categorical data was simplified due to inconsistent data entry. Ex. fuzzywuzzy was used to sort sellertype as "dealer" or "private party" 
 * Transmission type was simplified in a similar manner for better categorical encoding 
 * Seller, location, VIN, ExteriorColor, InteriorColor, and TitleStatus features were removed
-* ExteriorColor and InteriorColor has a large amount different values that were difficult to catagorize. Example "pearl" as white
+* ExteriorColor and InteriorColor has a large amount different values that were difficult to categorize. Example "pearl" as white
 * Location is a useful feature that was removed for the sake of time. 
 
 ## Data Exploration 
@@ -80,14 +80,14 @@ Libraries used: sklearn, skopt, xgboost
 
 Models tested: Random forest regressor, XGboost regressor, Lasso regression, and Ridge regression
 
-*RFR and XGBoost are descision tree based models. 
+*RFR and XGBoost are decision tree based models. 
 *Lasso and Ridge both use regularized linear regression, the difference being how they are regularized. Ridge adds a penalty term which is equal to the square of the coefficient. Lasso adds a penalty term to the cost function equal to the absolute sum of the coefficients.
 
 * Data split into test and train sets, 10-90
 * A one hot encoder was used to encode categorical data (Categorical data here is not ordinal)
 * Car makes could be considered ordinal however and therefore label encoded. This would take additional work. Ex. Ferrari and McLaren labeled as 10, Honda and Ford labeled as 1
 * Target encoding tested but OHE provided better results.
-* Model trained, 5-fold cross validation and MAE used to test performance. (CV used due to small dataset is less suceptible to outliers however introduces some data leakage)
+* Model trained, 5-fold cross validation and MAE used to test performance. (CV used due to small dataset is less susceptible to outliers however introduces some data leakage)
 * Learning curves plotted to check over and underfitting 
 * Hyperparameter tuning with gridsearch and Bayesian optimization
 
@@ -95,7 +95,7 @@ Models tested: Random forest regressor, XGboost regressor, Lasso regression, and
 Libraries used: eli5, shap, graphviz
 
 * eli5 used to find permutation importance / feature importance. 
-* This works by randomly shuffling a feature column in the dataset and making predictions using the resulting dataset. If the model relied on that feature heavily to make accurate predictions then the results will be very off. For example, horsepower is shuffled so a random horsepower stat is assigned to a car. If horsepower is a good predictor of the value of a car, then the prediction using the shuffled dataset will be wildly off.  
+* This works by randomly shuffling a feature column in the dataset and making predictions using the resulting dataset. If the model relied on that feature heavily to make accurate predictions, then the results will be very off. For example, horsepower is shuffled so a random horsepower stat is assigned to a car. If horsepower is a good predictor of the value of a car, then the prediction using the shuffled dataset will be wildly off.  
 
 | ![IMG](demo/permutationimportance.png) |
 |:--:| 
@@ -116,7 +116,7 @@ Libraries used: eli5, shap, graphviz
 |:--:| 
 | *SHAP - SHapley Additive exPlanations* |
 
-* SHAP summary plots show feature importance using permutaion importance but also show what is driving it. 
+* SHAP summary plots show feature importance using permutation importance but also show what is driving it. 
 * Each dot has three characteristics:
   * Vertical location shows what feature it is depicting
   * Color shows whether that feature was a high or low value for that row of the dataset
@@ -130,10 +130,7 @@ Libraries used: eli5, shap, graphviz
 ## Model Web Deployment
 Tech stack: pickle, Flask, Heroku
 
-* A final model trained against the entire dataset due to its limited size. The model and one hot encoder was then serialized using pickle. 
-* Pickle implements binary protocols for serializing and de-serializing a Python object structure. form character stream. This character stream contains all the information necessary to reconstruct the object in another python script.
-* A web app was made using flask, a lightweight WSGI web application framework 
+* The final model was trained against the entire dataset. The model and one hot encoder were then serialized using pickle. 
+* Pickle implements binary protocols for serializing and de-serializing a Python object structure. This character stream contains all the information necessary to reconstruct the object in another python script.
+* A web app was made using flask, a lightweight WSGI web application framework. 
 * The web app was deployed by linking GitHub with Heroku. Heroku is a container-based cloud Platform. 
-
-
-
