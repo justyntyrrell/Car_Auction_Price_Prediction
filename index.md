@@ -1,4 +1,4 @@
-![IMG](demo/banner.png)
+![IMG](webdemo/banner.png)
 Web application: https://car-auction-price.herokuapp.com/
 
 # Car Auction Price Prediction
@@ -9,7 +9,7 @@ Web application: https://car-auction-price.herokuapp.com/
 * Create a tool to predict the auction selling price for cars selling on https://carsandbids.com/
 * Practice end-to-end machine learning (ML) development. From data collection to model deployment.
 
-![IMG](demo/example1.gif)
+![IMG](webdemo/example1.gif)
 
 **Use Cases:**
 * Attract a potential seller by providing an estimate on how much their car could sell for on cars and bids.
@@ -63,15 +63,15 @@ I wanted to use cars and bids because they include the horsepower, torque, and t
 * Scatter plots showed some larger than possible values (HP > 2000) and these were corrected 
 * Horsepower followed by torque has the largest correlation to price
 
-| ![IMG](demo/corrmat.PNG) |
+| ![IMG](webdemo/corrmat.PNG) |
 |:--:| 
 | *Correlation matrix* |
 
-| ![IMG](demo/scatterplots.png) |
+| ![IMG](webdemo/scatterplots.png) |
 |:--:| 
 | *Scatterplot* |
 
-| ![IMG](demo/makeboxplot.png) |
+| ![IMG](webdemo/makeboxplot.png) |
 |:--:| 
 | *Box plot of car price vs. Make* |
 
@@ -97,7 +97,7 @@ Models tested: Random forest regressor, XGboost regressor, Lasso regression, and
 * eli5 used to find permutation importance / feature importance. 
 * This works by randomly shuffling a feature column in the dataset and making predictions using the resulting dataset. If the model relied on that feature heavily to make accurate predictions, then the results will be very off. For example, horsepower is shuffled so a random horsepower stat is assigned to a car. If horsepower is a good predictor of the value of a car, then the prediction using the shuffled dataset will be wildly off.  
 
-| ![IMG](demo/permutationimportance.png) |
+| ![IMG](webdemo/permutationimportance.png) |
 |:--:| 
 | *Permutation Importance* |
 
@@ -105,14 +105,14 @@ Models tested: Random forest regressor, XGboost regressor, Lasso regression, and
 *  This is done by repeatedly altering the value for one variable and tracing how this impacts the outcome.
 * For example, horsepower is increased from 0 to 800 for a car and the predicted price is graphed. This is done for multiple cars and averaged. 
 
-| ![IMG](demo/pdp.png) |
+| ![IMG](webdemo/pdp.png) |
 |:--:| 
 | *Partial Dependence Plot* |
 
 * SHAP values break down an individual prediction to show the impact of each feature. 
 * Impact of having a certain value for a given feature compared to if that feature took some baseline value 
 
-| ![IMG](demo/SHAP.png) |
+| ![IMG](webdemo/SHAP.png) |
 |:--:| 
 | *SHAP - SHapley Additive exPlanations* |
 
@@ -122,7 +122,7 @@ Models tested: Random forest regressor, XGboost regressor, Lasso regression, and
   * Color shows whether that feature was a high or low value for that row of the dataset
   * Horizontal location shows whether the effect of that value caused a higher or lower prediction.
 
-| ![IMG](demo/SHAPsummaryplot.png) |
+| ![IMG](webdemo/SHAPsummaryplot.png) |
 |:--:| 
 | *SHAP Summary Plot* |
 
