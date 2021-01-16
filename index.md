@@ -1,5 +1,5 @@
 ![IMG](webdemo/banner.png)
-Web application: https://car-auction-price.herokuapp.com/
+Web application: {% link https://car-auction-price.herokuapp.com/ %}
 
 # Car Auction Price Prediction
 
