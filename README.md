@@ -39,14 +39,14 @@ I wanted to use cars and bids because they include the horsepower, torque, and t
 * Many of cars on carsandbids.com are in very good condition so the model likely has a bias towards mint condition cars. There is no feature that encapsulates condition apart from mileage. 
 
 ## Data Collection 
-Libraries used: selenium, beautifulSoup
+**Libraries Used:** selenium, beautifulSoup
 
 * A web scraper was built using selenium and beautifulsoup. 
 * Selenium is a popular browser automation tool and beautifulsoup is a Python library for pulling data out of HTML and XML files
 * Features collected were vehicle: Year, Make, Model, Seller, Location, VIN, Mileage, BodyStyle, Engine, Drivetrain, Transmission, ExteriorColor, InteriorColor, TitleStatus, SellerType, Price, Reserve, Horsepower, Torque.
 
 ## Data Cleaning
-Libraries used: pandas, numpy, fuzzywuzzy
+**Libraries Used:** pandas, numpy, fuzzywuzzy
 
 * Data was loaded as a panda dataframe in Jupyter notebook.
 * Cars with missing data were removed
@@ -58,7 +58,7 @@ Libraries used: pandas, numpy, fuzzywuzzy
 * Location is a useful feature that was removed for the sake of time. 
 
 ## Data Exploration 
-Libraries used: seaborn, matplotlib
+**Libraries Used:** seaborn, matplotlib
 * Various scatter plots, boxplots, and correlation matrices were used to investigate the data and used to determine where more care should be taken
 * Scatter plots showed some larger than possible values (HP > 2000) and these were corrected 
 * Horsepower followed by torque has the largest correlation to price
@@ -76,7 +76,7 @@ Libraries used: seaborn, matplotlib
 | *Box plot of car price vs. Make* |
 
 ## Model Preprocessing, Training, and Hyperparameter tuning
-Libraries used: sklearn, skopt, xgboost
+**Libraries Used:** sklearn, skopt, xgboost
 
 Models tested: Random forest regressor, XGboost regressor, Lasso regression, and Ridge regression
 
@@ -92,7 +92,7 @@ Models tested: Random forest regressor, XGboost regressor, Lasso regression, and
 * Hyperparameter tuning with gridsearch and Bayesian optimization
 
 ## Model Explainability
-Libraries used: eli5, shap, graphviz
+**Libraries Used:** eli5, shap, graphviz
 
 * eli5 used to find permutation importance / feature importance. 
 * This works by randomly shuffling a feature column in the dataset and making predictions using the resulting dataset. If the model relied on that feature heavily to make accurate predictions, then the results will be very off. For example, horsepower is shuffled so a random horsepower stat is assigned to a car. If horsepower is a good predictor of the value of a car, then the prediction using the shuffled dataset will be wildly off.  
@@ -128,7 +128,7 @@ Libraries used: eli5, shap, graphviz
 
 
 ## Model Web Deployment
-Tech stack: pickle, Flask, Heroku
+**Tech stack:** pickle, Flask, Heroku
 
 * The final model was trained against the entire dataset. The model and one hot encoder were then serialized using pickle. 
 * Pickle implements binary protocols for serializing and de-serializing a Python object structure. This character stream contains all the information necessary to reconstruct the object in another python script.
