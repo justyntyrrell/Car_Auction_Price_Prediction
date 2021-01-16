@@ -1,12 +1,12 @@
 ![IMG](webdemo/banner.png)
-Web application: [link](https://car-auction-price.herokuapp.com/)
+Web application: [Try it out!](https://car-auction-price.herokuapp.com/)
 
 # Car Auction Price Prediction
 
 ## Project Overview 
 
 **Goal:**
-* Create a tool to predict the auction selling price for cars selling on https://carsandbids.com/
+* Create a tool to predict the auction selling price for cars selling on [carsandbids.com](https://carsandbids.com/)
 * Practice end-to-end machine learning (ML) development. From data collection to model deployment.
 
 ![IMG](webdemo/example1.gif)
@@ -20,13 +20,6 @@ Web application: [link](https://car-auction-price.herokuapp.com/)
 
 I wanted to use cars and bids because they include the horsepower, torque, and transmission specs of each car. It also shows exactly what the car sold / what the highest bid was. This is different then Kiji Autos or Auto Trader that has a listed price. However, as a smaller, new website there were around 1200 sold cars at the time of data collection which is a relatively small training set. Overall, this was an interesting investigation of data quality/features versus quantity of data. 
 
-**File Summary:**
-* Web Scraper: [main.py](/main.py), [scraper.py](/scraper.py)
-* Collected Raw Data: [car_auction_data.csv](/car_auction_data.csv)
-* Model building: [car_auction.ipynb](/car_auction.ipynb)
-* Flask web app: [app.py](/app.py), [index.html](/templates/index.html), [Procfile](//Procfile), [requirements.txt](/requirements.txt), [OH_encoder.pkl](/OH_encoder.pkl), [Finalized_model.pkl](/Finalized_model.pkl)
-
-
 **Results and Takeaways:** 
 * An XGBoost regressor model performed the best with a mean absolute error (MAE) of around $6900
 * This means on average the model was $6900 off the correct price of a car.
@@ -34,7 +27,7 @@ I wanted to use cars and bids because they include the horsepower, torque, and t
 * The model performed the best by overfitting the data. Looking at the learning curve, the model would benefit from more training examples.
 * Horsepower was the best indictor of selling price.
 * The model understandably does well on cars where the features accurately portray the cars worth.
-* The model does very poorly on cars that have appreciated in value unless the model has been trained on that car. A good example is the BMW Z8 which the model predicts would sell for around $20 000 but sells for upwards of $180 000 https://carsandbids.com/auctions/92onPXLA/2002-bmw-z8. The BMW Z8 has appreciated greatly in value partly due to it being regarded as a good-looking car but also because of its limited production numbers. 
+* The model does very poorly on cars that have appreciated in value unless the model has been trained on that car. A good example is the BMW Z8 which the model predicts would sell for around $20 000 but sells for upwards of [$180 000](https://carsandbids.com/auctions/92onPXLA/2002-bmw-z8). The BMW Z8 has appreciated greatly in value partly due to it being regarded as a good-looking car but also because of its limited production numbers. 
 * Including production numbers could help the model predict these cars but the easiest way would be to train it on more cars including examples of appreciated cars.
 * Many of cars on carsandbids.com are in very good condition so the model likely has a bias towards mint condition cars. There is no feature that encapsulates condition apart from mileage. 
 
