@@ -7,7 +7,7 @@ Web application: https://car-auction-price.herokuapp.com/
 
 **Goal:**
 * Create a tool to predict the auction selling price for cars selling on [carsandbids.com](https://carsandbids.com/)
-* Practice end-to-end machine learning (ML) development. From data collection to model deployment.
+* Practice end-to-end machine learning (ML) development, from data collection to model deployment.
 
 ![IMG](demo/example1.gif)
 
@@ -28,9 +28,9 @@ I wanted to use cars and bids because they include the horsepower, torque, and t
 
 
 **Results and Takeaways:** 
-* An XGBoost regressor model performed the best with a mean absolute error (MAE) of around $6,900
+* An XGBoost regressor model performed the best with a mean absolute error (MAE) of around $6,900.
 * This means on average the model was $6900 off the correct price of a car.
-* To contextualize this, the average sale price of a car was $20,085 with a std of $21,700
+* To contextualize this, the average sale price of a car was $20,085 with a std of $21,700.
 * The model performed the best by overfitting the data. Looking at the learning curve, the model would benefit from more training examples.
 * Horsepower was the best indictor of selling price.
 * The model understandably does well on cars where the features accurately portray the cars worth.
@@ -41,27 +41,27 @@ I wanted to use cars and bids because they include the horsepower, torque, and t
 ## Data Collection 
 **Libraries Used:** selenium, beautifulSoup
 
-* A web scraper was built using selenium and beautifulsoup. 
-* Selenium is a popular browser automation tool and beautifulsoup is a Python library for pulling data out of HTML and XML files
+* A web scraper was built using selenium and beautifulSoup. 
+* Selenium is a popular browser automation tool and beautifulSoup is a Python library for pulling data out of HTML and XML files.
 * Features collected were vehicle: Year, Make, Model, Seller, Location, VIN, Mileage, BodyStyle, Engine, Drivetrain, Transmission, ExteriorColor, InteriorColor, TitleStatus, SellerType, Price, Reserve, Horsepower, Torque.
 
 ## Data Cleaning
 **Libraries Used:** pandas, numpy, fuzzywuzzy
 
 * Data was loaded as a panda dataframe in Jupyter notebook.
-* Cars with missing data were removed
-* Various characters were removed from numerical data such as commas and $'s. It was then converted to integers. 
-* Some categorical data was simplified due to inconsistent data entry. Ex. fuzzywuzzy was used to sort sellertype as "dealer" or "private party" 
-* Transmission type was simplified in a similar manner for better categorical encoding 
-* Seller, location, VIN, ExteriorColor, InteriorColor, and TitleStatus features were removed
-* ExteriorColor and InteriorColor has a large amount different values that were difficult to categorize. Example "pearl" as white
-* Location is a useful feature that was removed for the sake of time. 
+* Cars with missing data were removed.
+* Various characters were removed from numerical data such as commas and $'s. Data was then converted to integers. 
+* Some categorical data was simplified due to inconsistent data entry. Ex. fuzzywuzzy was used to sort sellertype as "dealer" or "private party".
+* Transmission type was simplified in a similar manner for better categorical encoding.
+* Seller, Location, VIN, ExteriorColor, InteriorColor, and TitleStatus features were removed.
+* ExteriorColor and InteriorColor had many different values that were difficult to categorize. Example "pearl" as white or "Desert Dune Mica" as silver. This would be a good area to expand on as feature engineering often give the best improvment to performance besides getting more data. 
+* Location is also a useful feature that was removed for the sake of time but could be a great area to improve the model.  
 
 ## Data Exploration 
 **Libraries Used:** seaborn, matplotlib
-* Various scatter plots, boxplots, and correlation matrices were used to investigate the data and used to determine where more care should be taken
-* Scatter plots showed some larger than possible values (HP > 2000) and these were corrected 
-* Horsepower followed by torque has the largest correlation to price
+* Various scatter plots, boxplots, and correlation matrices were used to investigate the data and distribution.
+* Scatter plots showed some larger than possible values (HP > 2000) and these were corrected.
+* Horsepower followed by torque has the largest correlation to price.
 
 | ![IMG](demo/corrmat.PNG) |
 |:--:| 
@@ -78,31 +78,32 @@ I wanted to use cars and bids because they include the horsepower, torque, and t
 ## Model Preprocessing, Training, and Hyperparameter tuning
 **Libraries Used:** sklearn, skopt, xgboost
 
-Models tested: Random forest regressor, XGboost regressor, Lasso regression, and Ridge regression
+**Models tested:** Random forest regressor, XGboost regressor, Lasso regression, and Ridge regression
 
 *RFR and XGBoost are decision tree based models. 
 *Lasso and Ridge both use regularized linear regression, the difference being how they are regularized. Ridge adds a penalty term which is equal to the square of the coefficient. Lasso adds a penalty term to the cost function equal to the absolute sum of the coefficients.
 
 * Data split into test and train sets, 10-90
 * A one hot encoder was used to encode categorical data (Categorical data here is not ordinal)
-* Car makes could be considered ordinal however and therefore label encoded. This would take additional work. Ex. Ferrari and McLaren labeled as 10, Honda and Ford labeled as 1
+* However, Car makes could be considered ordinal and therefore label encoded. This would take additional work. Ex. Ferrari and McLaren labeled as 10, Honda and Ford labeled as 1. The benefit of this is features reduction becuase one hot encoding make adds around 50 more features. Feature reduction could benefit lasso/ridge regression. 
 * Target encoding tested but OHE provided better results.
-* Model trained, 5-fold cross validation and MAE used to test performance. (CV used due to small dataset is less susceptible to outliers however introduces some data leakage)
-* Learning curves plotted to check over and underfitting 
-* Hyperparameter tuning with gridsearch and Bayesian optimization
+* Model trained, 5-fold cross validation and MAE used to test performance. CV is used due to the small dataset and is less susceptible to outliers however introduces some data leakage. This is becuase the model is being trained on some of the validation data and CV score will be slighlty inflated. 
+* Learning curves plotted to check over and underfitting.
+* Hyperparameter tuning with RandomizedSearchCV and Bayesian optimization.
 
 ## Model Explainability
 **Libraries Used:** eli5, shap, graphviz
 
-* eli5 used to find permutation importance / feature importance. 
-* This works by randomly shuffling a feature column in the dataset and making predictions using the resulting dataset. If the model relied on that feature heavily to make accurate predictions, then the results will be very off. For example, horsepower is shuffled so a random horsepower stat is assigned to a car. If horsepower is a good predictor of the value of a car, then the prediction using the shuffled dataset will be wildly off.  
+* eli5 was used to find permutation importance / feature importance. 
+* It works by randomly shuffling a feature column in the dataset and making predictions using the resulting dataset. If the model relied on that feature heavily to make accurate predictions, then the results will be further off. 
+* For example, horsepower is shuffled so a random horsepower stat is assigned to a car. If horsepower is a good predictor of the value of a car, then the predictions using the shuffled dataset will be wildly off.  
 
 | ![IMG](demo/permutationimportance.png) |
 |:--:| 
 | *Permutation Importance* |
 
-* Feature importance shows what variables most affect predictions, but partial dependence plots show how a feature affects predictions.
-*  This is done by repeatedly altering the value for one variable and tracing how this impacts the outcome.
+* Feature importance shows which variables most affect predictions, but partial dependence plots show how a feature affects predictions.
+* This is done by repeatedly altering the value for one variable and tracing how this impacts the outcome.
 * For example, horsepower is increased from 0 to 800 for a car and the predicted price is graphed. This is done for multiple cars and averaged. 
 
 | ![IMG](demo/pdp.png) |
@@ -110,13 +111,13 @@ Models tested: Random forest regressor, XGboost regressor, Lasso regression, and
 | *Partial Dependence Plot* |
 
 * SHAP values break down an individual prediction to show the impact of each feature. 
-* Impact of having a certain value for a given feature compared to if that feature took some baseline value 
+* It shows the impact of having a certain value for a given feature compared to if that feature took some baseline value. 
 
 | ![IMG](demo/SHAP.png) |
 |:--:| 
 | *SHAP - SHapley Additive exPlanations* |
 
-* SHAP summary plots show feature importance using permutation importance but also show what is driving it. 
+* SHAP summary plots show feature importance using permutation importance but also show how it's important. 
 * Each dot has three characteristics:
   * Vertical location shows what feature it is depicting
   * Color shows whether that feature was a high or low value for that row of the dataset
