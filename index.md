@@ -82,7 +82,17 @@ Models tested: Random forest regressor, XGboost regressor, Lasso regression, and
 * Target encoding tested but OHE provided better results.
 * Model trained, 5-fold cross validation and MAE used to test performance. (CV used due to small dataset is less susceptible to outliers however introduces some data leakage)
 * Learning curves plotted to check over and underfitting 
-* Hyperparameter tuning with gridsearch and Bayesian optimization
+* Hyperparameter tuning with RandomizedSearchCV and Bayesian optimization
+
+![IMG](webdemo/XGB_learningcurve.png) ![IMG](webdemo/rfr_learningcurve.png)
+* XGBoost and Random forest models have similar validation scores but XGBoost was chosen because it had the lower test MAE
+* Both the XGBoost and Random forest models are technically overfiting the data. This is seen by the very low training score and much higher validation scores. This means the models are not generalizing well. However, They still provide the lower validation MAE. 
+* The downward trend of the validation scores for the XGBoost and RF models also indicate that both models would benefit from more training examples.
+
+![IMG](webdemo/rr_learningcurve.png) ![IMG](webdemo/lasso_learningcurve.png)
+* The ridge and lasso models indicate okay fitted models as the validation scores are not much larger then the training scores. 
+* However, the overall error of the ridge and lasso models are too high. The validation and training curves have also nearly converged and are staying steady which indicates that more training exmamples will not help. 
+* When overfitting lasso and ridge models more to the data training scores improve but the models gernalize very poorly and th echosen models above end up having better validation scores.
 
 ## Model Explainability
 **Libraries Used:** eli5, shap, graphviz
