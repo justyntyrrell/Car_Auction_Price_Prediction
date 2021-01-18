@@ -80,20 +80,31 @@ I wanted to use cars and bids because they include the horsepower, torque, and t
 
 **Models tested:** Random forest regressor, XGboost regressor, Lasso regression, and Ridge regression
 
-*RFR and XGBoost are decision tree based models. 
-*Lasso and Ridge both use regularized linear regression, the difference being how they are regularized. Ridge adds a penalty term which is equal to the square of the coefficient. Lasso adds a penalty term to the cost function equal to the absolute sum of the coefficients.
+* RFR and XGBoost are decision tree based models. 
+* Lasso and Ridge both use regularized linear regression, the difference being how they are regularized. Ridge adds a penalty term which is equal to the square of the coefficient. Lasso adds a penalty term to the cost function equal to the absolute sum of the coefficients.
 
 * Data split into test and train sets, 10-90
 * A one hot encoder was used to encode categorical data (Categorical data here is not ordinal)
 * However, Car makes could be considered ordinal and therefore label encoded. This would take additional work. Ex. Ferrari and McLaren labeled as 10, Honda and Ford labeled as 1. The benefit of this is features reduction becuase one hot encoding make adds around 50 more features. Feature reduction could benefit lasso/ridge regression. 
 * Target encoding tested but OHE provided better results.
 * Model trained, 5-fold cross validation and MAE used to test performance. CV is used due to the small dataset and is less susceptible to outliers however introduces some data leakage. This is becuase the model is being trained on some of the validation data and CV score will be slighlty inflated. 
-* Learning curves plotted to check over and underfitting.
+* Learning curves were plotted to check over and underfitting.
 * Hyperparameter tuning with RandomizedSearchCV and Bayesian optimization.
+
+![IMG](demo/XGB_learningcurve.png) ![IMG](demo/rfr_learningcurve.png)
+* XGBoost and Random forest models have similar validation scores but XGBoost was chosen because it had the lower test MAE
+* Both the XGBoost and Random forest models are technically overfiting the data. This is seen by the very low training score and much higher validation scores. This means the models are not generalizing well. However, They still provide the lower validation MAE. 
+* The downward trend of the validation scores for the XGBoost and RF models also indicate that both models would benefit from more training examples.
+
+![IMG](demo/rr_learningcurve.png) ![IMG](demo/lasso_learningcurve.png)
+* The ridge and lasso models indicate okay fitted models as the validation scores are not much larger then the training scores. 
+* However, the overall error of the ridge and lasso models are too high. The validation and training curves have also nearly converged and are staying steady which indicates that more training exmamples will not help. 
+* When overfitting lasso and ridge models more to the data training scores improve but the models gernalize very poorly and th echosen models above end up having better validation scores.
 
 ## Model Explainability
 **Libraries Used:** eli5, shap, graphviz
 
+* XGBoost model was used
 * eli5 was used to find permutation importance / feature importance. 
 * It works by randomly shuffling a feature column in the dataset and making predictions using the resulting dataset. If the model relied on that feature heavily to make accurate predictions, then the results will be further off. 
 * For example, horsepower is shuffled so a random horsepower stat is assigned to a car. If horsepower is a good predictor of the value of a car, then the predictions using the shuffled dataset will be wildly off.  
