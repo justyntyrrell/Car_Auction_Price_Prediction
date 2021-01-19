@@ -18,7 +18,7 @@ Web Application: [Try it out!](https://car-auction-price.herokuapp.com/)
 
 **Why carsandbids.com?**
 
-I wanted to use cars and bids because they include the horsepower, torque, and transmission specs of each car. It also shows exactly what the car sold / what the highest bid was. This is different then Kiji Autos or Auto Trader that has a listed price. However, as a smaller, new website there were around 1200 sold cars at the time of data collection which is a relatively small training set. Overall, this was an interesting investigation of data quality/features versus quantity of data. 
+I wanted to use cars and bids because they include the horsepower, torque, and transmission specs of each car. It also shows exactly what the car sold / what the highest bid was. This is different then Kijiji Autos or Auto Trader that has a listed price. However, as a smaller, new website there were around 1200 sold cars at the time of data collection which is a relatively small training set. Overall, this was an interesting investigation of data quality/features versus quantity of data. 
 
 **Results and Takeaways:** 
 * An XGBoost regressor model performed the best with a mean absolute error (MAE) of around $6900
@@ -85,11 +85,17 @@ Models tested: Random forest regressor, XGboost regressor, Lasso regression, and
 * Hyperparameter tuning with RandomizedSearchCV and Bayesian optimization
 
 ![IMG](webdemo/XGB_learningcurve.png) ![IMG](webdemo/rfr_learningcurve.png)
+|:--:| 
+| *Test Scores: 6911, 7319* |
+
 * XGBoost and Random forest models have similar validation scores but XGBoost was chosen because it had the lower test MAE
 * Both the XGBoost and Random forest models are technically overfiting the data. This is seen by the very low training score and much higher validation scores. This means the models are not generalizing well. However, They still provide the lower validation MAE. 
 * The downward trend of the validation scores for the XGBoost and RF models also indicate that both models would benefit from more training examples.
 
 ![IMG](webdemo/rr_learningcurve.png) ![IMG](webdemo/lasso_learningcurve.png)
+|:--:| 
+| *Test Scores: 8913, 9755* |
+
 * The ridge and lasso models indicate okay fitted models as the validation scores are not much larger then the training scores. 
 * However, the overall error of the ridge and lasso models are too high. The validation and training curves have also nearly converged and are staying steady which indicates that more training exmamples will not help. 
 * When overfitting lasso and ridge models more to the data training scores improve but the models gernalize very poorly and th echosen models above end up having better validation scores.
