@@ -89,16 +89,17 @@ Models tested: Random forest regressor, XGboost regressor, Lasso regression, and
 | *Test Scores: 6911, 7319* |
 
 * XGBoost and Random forest models have similar validation scores but XGBoost was chosen because it had the lower test MAE
-* Both the XGBoost and Random forest models are technically overfiting the data. This is seen by the very low training score and much higher validation scores. This means the models are not generalizing well. However, They still provide the lower validation MAE. 
+* Both the XGBoost and Random forest models are technically overfitting the data. This is seen by the very low training score and much higher validation scores. This means the models are not generalizing well. However, they still provide a lower validation MAE. 
 * The downward trend of the validation scores for the XGBoost and RF models also indicate that both models would benefit from more training examples.
 
 ![IMG](webdemo/rr_learningcurve.png) ![IMG](webdemo/lasso_learningcurve.png)
 |:--:| 
 | *Test Scores: 8913, 9755* |
 
-* The ridge and lasso models indicate okay fitted models as the validation scores are not much larger then the training scores. 
-* However, the overall error of the ridge and lasso models are too high. The validation and training curves have also nearly converged and are staying steady which indicates that more training exmamples will not help. 
-* When overfitting lasso and ridge models more to the data training scores improve but the models gernalize very poorly and th echosen models above end up having better validation scores.
+* The ridge and lasso models indicate okay fitted models as the validation scores are not much larger than the training scores. 
+* However, the overall error of the ridge and lasso models are too high. The validation and training curves have also nearly converged and are staying steady which indicates that more training examples will not help. 
+* When overfitting lasso and ridge models more to the data training scores improve but the models generalize poorly, and the chosen models above end up having better validation scores.
+
 
 ## Model Explainability
 **Libraries Used:** eli5, shap, graphviz
