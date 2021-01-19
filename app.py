@@ -18,17 +18,23 @@ def index():
 
 
 def ValuePredictor(to_predict_list):
-    loaded_model = pickle.load(open("finalized_model.pkl","rb"))
+    # Unserialize XGBoost model and one hot encoder
+    loaded_model = pickle.load(open("finalized_model.sav","rb"))
     loaded_OHE = pickle.load(open("OH_encoder.pkl","rb"))
     
+    # Create a pandas data from user input 
     df = pd.DataFrame(data=to_predict_list, index = [0])
+    # List of categorical features that will be encoded
     cat_list = ['Make', 'BodyStyle', 'Drivetrain','SellerType', 'Reserve', 'Transmission']
+    # List of numerical data by removing categorical data
     num_data = df.drop(cat_list, axis = 1)
+    # Convert numerical data to integer
     int_data = num_data.apply(pd.to_numeric)
+    # One hot encode categorical data
     cat_data = pd.DataFrame(loaded_OHE.transform(df[cat_list]))
-
+    # Combine numerical and categorical data into one data frame
     encoded_data = pd.concat([int_data, cat_data], axis = 1)
-    
+    # predict with model 
     result = loaded_model.predict(encoded_data)
     return result[0]
 
