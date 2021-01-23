@@ -21,7 +21,7 @@ Web Application: [Try it out!](https://car-auction-price.herokuapp.com/)
 I wanted to use cars and bids because they include the horsepower, torque, and transmission specs of each car. It also shows exactly what the car sold / what the highest bid was. This is different then Kijiji Autos or Auto Trader that has a listed price. However, as a smaller, new website there were around 1200 sold cars at the time of data collection which is a relatively small training set. Overall, this was an interesting investigation of data quality/features versus quantity of data. 
 
 **Results and Takeaways:** 
-* An XGBoost regressor model performed the best with a mean absolute error (MAE) of around $6,900
+* An XGBoost regressor model performed the best with a mean absolute error (MAE) of around $6,900.
 * This means on average the model was $6,900 off the correct price of a car.
 * To contextualize this, the average sale price of a car was $20,085 with a std of $21,700.
 * The model performed the best by overfitting the data. Looking at the learning curve, the model would benefit from more training examples.
@@ -42,19 +42,19 @@ I wanted to use cars and bids because they include the horsepower, torque, and t
 **Libraries Used:** pandas, numpy, fuzzywuzzy
 
 * Data was loaded as a panda dataframe in Jupyter notebook.
-* Cars with missing data were removed
+* Cars with missing data were removed.
 * Various characters were removed from numerical data such as commas and $'s. It was then converted to integers. 
 * Some categorical data was simplified due to inconsistent data entry. Ex. fuzzywuzzy was used to sort sellertype as "dealer" or "private party" 
-* Transmission type was simplified in a similar manner for better categorical encoding 
-* Seller, location, VIN, ExteriorColor, InteriorColor, and TitleStatus features were removed
+* Transmission type was simplified in a similar manner for better categorical encoding.
+* Seller, location, VIN, ExteriorColor, InteriorColor, and TitleStatus features were removed.
 * ExteriorColor and InteriorColor has a large amount different values that were difficult to categorize. Example "pearl" as white
 * Location is a useful feature that was removed for the sake of time. 
 
 ## Data Exploration 
 **Libraries Used:** seaborn, matplotlib
-* Various scatter plots, boxplots, and correlation matrices were used to investigate the data and used to determine where more care should be taken
-* Scatter plots showed some larger than possible values (HP > 2000) and these were corrected 
-* Horsepower followed by torque has the largest correlation to price
+* Various scatter plots, boxplots, and correlation matrices were used to investigate the data and used to determine where more care should be taken.
+* Scatter plots showed some larger than possible values (HP > 2000) and these were corrected.
+* Horsepower followed by torque has the largest correlation to price.
 
 | ![IMG](webdemo/corrmat.PNG) |
 |:--:| 
@@ -73,7 +73,7 @@ I wanted to use cars and bids because they include the horsepower, torque, and t
 
 Models tested: Random forest regressor, XGboost regressor, Lasso regression, and Ridge regression
 
-*RFR and XGBoost are decision tree based models. 
+*RFR and XGBoost are decision tree-based models. 
 *Lasso and Ridge both use regularized linear regression, the difference being how they are regularized. Ridge adds a penalty term which is equal to the square of the coefficient. Lasso adds a penalty term to the cost function equal to the absolute sum of the coefficients.
 
 * Data split into test and train sets, 10-90
@@ -81,15 +81,15 @@ Models tested: Random forest regressor, XGboost regressor, Lasso regression, and
 * Car makes could be considered ordinal however and therefore label encoded. This would take additional work. Ex. Ferrari and McLaren labeled as 10, Honda and Ford labeled as 1
 * Target encoding tested but OHE provided better results.
 * Model trained, 5-fold cross validation and MAE used to test performance. (CV used due to small dataset is less susceptible to outliers however introduces some data leakage)
-* Learning curves plotted to check over and underfitting 
+* Learning curves plotted to check over and underfitting. 
 * Hyperparameter tuning with RandomizedSearchCV and Bayesian optimization
 
 ![IMG](webdemo/XGB_learningcurve.png) ![IMG](webdemo/rfr_learningcurve.png)
 |:--:| 
 | *Test Scores: 6911, 7319* |
 
-* XGBoost and Random forest models have similar validation scores but XGBoost was chosen because it had the lower test MAE
-* Both the XGBoost and Random forest models are technically overfitting the data. This is seen by the very low training score and much higher validation scores. This means the models are not generalizing well. However, they still provide a lower validation MAE. 
+* XGBoost and Random forest models have similar validation scores but XGBoost was chosen because it had the lower test MAE.
+* Both the XGBoost and Random forest models are technically overfitting (high variance) the data. This is seen by the low training score and much higher validation scores. This means the models are not generalizing well. However, they still provide a lower validation MAE. 
 * The downward trend of the validation scores for the XGBoost and RF models also indicate that both models would benefit from more training examples.
 
 ![IMG](webdemo/rr_learningcurve.png) ![IMG](webdemo/lasso_learningcurve.png)
@@ -120,7 +120,7 @@ Models tested: Random forest regressor, XGboost regressor, Lasso regression, and
 | *Partial Dependence Plot* |
 
 * SHAP values break down an individual prediction to show the impact of each feature. 
-* Impact of having a certain value for a given feature compared to if that feature took some baseline value 
+* Impact of having a certain value for a given feature compared to if that feature took some baseline value.
 
 | ![IMG](webdemo/SHAP.png) |
 |:--:| 
@@ -128,8 +128,8 @@ Models tested: Random forest regressor, XGboost regressor, Lasso regression, and
 
 * SHAP summary plots show feature importance using permutation importance but also show what is driving it. 
 * Each dot has three characteristics:
-  * Vertical location shows what feature it is depicting
-  * Color shows whether that feature was a high or low value for that row of the dataset
+  * Vertical location shows what feature it is depicting.
+  * Color shows whether that feature was a high or low value for that row of the dataset.
   * Horizontal location shows whether the effect of that value caused a higher or lower prediction.
 
 | ![IMG](webdemo/SHAPsummaryplot.png) |
@@ -143,4 +143,4 @@ Models tested: Random forest regressor, XGboost regressor, Lasso regression, and
 * The final model was trained against the entire dataset. The model and one hot encoder were then serialized using pickle. 
 * Pickle implements binary protocols for serializing and de-serializing a Python object structure. This character stream contains all the information necessary to reconstruct the object in another python script.
 * A web app was made using flask, a lightweight WSGI web application framework. 
-* The web app was deployed by linking GitHub with Heroku. Heroku is a container-based cloud Platform. 
+* The web app was deployed by linking GitHub with Heroku. Heroku is a container-based cloud Platform.
