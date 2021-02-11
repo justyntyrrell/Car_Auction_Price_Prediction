@@ -112,7 +112,7 @@ Models tested: Random forest regressor, XGboost regressor, Lasso regression, and
 | *Permutation Importance* |
 
 * Feature importance shows what variables most affect predictions, but partial dependence plots show how a feature affects predictions.
-*  This is done by repeatedly altering the value for one variable and tracing how this impacts the outcome.
+*  This is done using a partial dependence plot (below) by repeatedly altering the value for one variable and tracing how this impacts the outcome.
 * For example, horsepower is increased from 0 to 800 for a car and the predicted price is graphed. This is done for multiple cars and averaged. 
 
 | ![IMG](webdemo/pdp.png) |
