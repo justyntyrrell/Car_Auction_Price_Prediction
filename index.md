@@ -73,10 +73,10 @@ I wanted to use cars and bids because they include the horsepower, torque, and t
 
 Models tested: Random forest regressor, XGboost regressor, Lasso regression, and Ridge regression
 
-*RFR and XGBoost are decision tree-based models. 
-*Lasso and Ridge both use regularized linear regression, the difference being how they are regularized. Ridge adds a penalty term which is equal to the square of the coefficient. Lasso adds a penalty term to the cost function equal to the absolute sum of the coefficients.
+* RFR and XGBoost are decision tree-based models. 
+* Lasso and Ridge both use regularized linear regression, the difference being how they are regularized. Ridge adds a penalty term which is equal to the square of the coefficient. Lasso adds a penalty term to the cost function equal to the absolute sum of the coefficients.
 
-* Data split into test and train sets, 10-90
+* Data was split into test and train sets, 10-90
 * A one hot encoder was used to encode categorical data (Categorical data here is not ordinal)
 * Car makes could be considered ordinal however and therefore label encoded. This would take additional work. Ex. Ferrari and McLaren labeled as 10, Honda and Ford labeled as 1
 * Target encoding tested but OHE provided better results.
