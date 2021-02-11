@@ -84,17 +84,17 @@ Models tested: Random forest regressor, XGboost regressor, Lasso regression, and
 * Learning curves plotted to check over and underfitting. 
 * Hyperparameter tuning with RandomizedSearchCV and Bayesian optimization
 
-![IMG](webdemo/XGB_learningcurve.png) ![IMG](webdemo/rfr_learningcurve.png)
+| ![IMG](webdemo/XGB_learningcurve.png) ![IMG](webdemo/rfr_learningcurve.png) |
 |:--:| 
-| *Test Scores: 6911, 7319* |
+| *Test Scores: 6911 (top), 7319 (bottom)* |
 
 * XGBoost and Random forest models have similar validation scores but XGBoost was chosen because it had the lower test MAE.
 * Both the XGBoost and Random forest models are technically overfitting (high variance) the data. This is seen by the low training score and much higher validation scores. This means the models are not generalizing well. However, they still provide a lower validation MAE. 
 * The downward trend of the validation scores for the XGBoost and RF models also indicate that both models would benefit from more training examples.
 
-![IMG](webdemo/rr_learningcurve.png) ![IMG](webdemo/lasso_learningcurve.png)
+| ![IMG](webdemo/rr_learningcurve.png) ![IMG](webdemo/lasso_learningcurve.png) |
 |:--:| 
-| *Test Scores: 8913, 9755* |
+| *Test Scores: 8913 (top), 9755 (bottom)* |
 
 * The ridge and lasso models indicate okay fitted models as the validation scores are not much larger than the training scores. 
 * However, the overall error of the ridge and lasso models are too high. The validation and training curves have also nearly converged and are staying steady which indicates that more training examples will not help. 
