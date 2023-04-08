@@ -1,5 +1,5 @@
 ![IMG](demo/banner.png)
-Web application: https://car-auction-price.herokuapp.com/
+Web application: https://car-auction-price.herokuapp.com/ (Note: Heroku removed their free tier so the web application is currently non-functioning)
 
 # Car Auction Price Prediction
 
